@@ -1,0 +1,54 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Environment Variables - NEVER commit this
+.env
+.env.*
+!.env.example
+*.env
+
+
+# Logs
+logs/*.log
+logs/*.jsonl
+
+# Database / Memory
+data/
+*.db
+*.sqlite3
+
+# Audio temp files
+*.mp3
+*.wav
+*.ogg
+temp_audio/
+
+# Screenshots
+screenshots/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# macOS
+.DS_Store
+
+# Test artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Distribution
+dist/
+build/
+*.egg-info/
