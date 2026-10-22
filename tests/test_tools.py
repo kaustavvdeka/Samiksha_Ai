@@ -142,8 +142,62 @@ class TestOpenApplication:
             result = execute_tool("open_application", {"application": "NonExistentAppXYZ"})
         assert "couldn't find NonExistentAppXYZ" in result
 
+    def test_close_application_applescript(self):
+        import tools
+        from tools.registry import execute_tool
+
+        mock_res = MagicMock()
+        mock_res.returncode = 0
+        with patch("subprocess.run", return_value=mock_res):
+            result = execute_tool("close_application", {"application": "Brave Browser"})
+        assert "Closed Brave Browser" in result
+
+    def test_list_running_applications(self):
+        import tools
+        from tools.registry import execute_tool
+
+        mock_res = MagicMock()
+        mock_res.returncode = 0
+        mock_res.stdout = "Finder, Brave Browser, WhatsApp\n"
+        with patch("subprocess.run", return_value=mock_res):
+            result = execute_tool("list_running_applications", {})
+        assert "Brave Browser" in result
+        assert "Finder" in result
+
+    def test_focus_application(self):
+        import tools
+        from tools.registry import execute_tool
+
+        mock_res = MagicMock()
+        mock_res.returncode = 0
+        with patch("subprocess.run", return_value=mock_res):
+            result = execute_tool("focus_application", {"application": "Brave"})
+        assert "Switched to Brave" in result
+
+    def test_hide_application(self):
+        import tools
+        from tools.registry import execute_tool
+
+        mock_res = MagicMock()
+        mock_res.returncode = 0
+        with patch("subprocess.run", return_value=mock_res):
+            result = execute_tool("hide_application", {"application": "Brave"})
+        assert "Minimized Brave" in result
+
+    def test_restart_application(self):
+        import tools
+        from tools.registry import execute_tool
+
+        mock_res = MagicMock()
+        mock_res.returncode = 0
+        with patch("subprocess.run", return_value=mock_res):
+            with patch("time.sleep"):
+                result = execute_tool("restart_application", {"application": "Brave"})
+        assert "Restarting Brave" in result
+
 
 class TestBrowserTools:
+
     def test_search_google_returns_string(self):
         import tools
         from tools.registry import execute_tool

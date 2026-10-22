@@ -63,11 +63,16 @@ _SAFE_TOOLS: set[str] = {
     "create_file",
     "read_file",
     "close_application",
+    "list_running_applications",
+    "focus_application",
+    "hide_application",
+    "restart_application",
     "get_memory",
     "save_memory",
     "run_custom_workflow",
     "list_custom_workflows",
 }
+
 
 _BLOCKED_TOOLS: set[str] = {
     "execute_arbitrary_shell",   # Raw shell — never allowed

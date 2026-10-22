@@ -37,8 +37,9 @@ RULES:
 9. When recalling a saved fact, use the get_memory tool first.
 
 You have access to these categories of tools:
-- Application control (open/close apps)
+- Application control (open, close, focus/switch, hide/minimize, list running, and restart apps)
 - Browser (open websites, search Google/YouTube)
+
 - File system (search, open, create files)
 - Computer control (keyboard, mouse, screenshot)
 - System info (time, hardware stats)
