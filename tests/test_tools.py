@@ -246,3 +246,57 @@ class TestScreenshotAndVision:
                 )
 
         assert "VS Code and a terminal" in result
+
+
+class TestMessagingTools:
+    def test_send_whatsapp_message_empty(self):
+        import tools
+        from tools.registry import execute_tool
+
+        result = execute_tool("send_whatsapp_message", {"message": ""})
+        assert "Cannot send an empty message" in result
+
+    def test_send_whatsapp_message_missing_number_prompts(self):
+        import tools
+        from tools.registry import execute_tool
+
+        with patch("tools.messaging._memory.recall", return_value=None):
+            result = execute_tool(
+                "send_whatsapp_message",
+                {"message": "Hello!", "phone_number": "me"},
+            )
+        assert "I don't know your WhatsApp number yet" in result
+
+    def test_send_whatsapp_message_success_direct_number(self):
+        import tools
+        from tools.registry import execute_tool
+
+        mock_res = MagicMock()
+        mock_res.returncode = 0
+
+        with patch("subprocess.run", return_value=mock_res):
+            with patch("time.sleep"):
+                result = execute_tool(
+                    "send_whatsapp_message",
+                    {"message": "Test message", "phone_number": "+91 98765-43210"},
+                )
+        assert "Sent WhatsApp message" in result
+        assert "919876543210" in result
+
+    def test_send_whatsapp_message_from_saved_memory(self):
+        import tools
+        from tools.registry import execute_tool
+
+        mock_res = MagicMock()
+        mock_res.returncode = 0
+
+        with patch("tools.messaging._memory.recall", return_value="9876543210"):
+            with patch("subprocess.run", return_value=mock_res):
+                with patch("time.sleep"):
+                    result = execute_tool(
+                        "send_whatsapp_message",
+                        {"message": "Reminder", "phone_number": "me"},
+                    )
+        assert "Sent WhatsApp message" in result
+        assert "your WhatsApp" in result
+

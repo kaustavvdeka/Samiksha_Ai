@@ -42,8 +42,10 @@ You have access to these categories of tools:
 
 - File system (search, open, create files)
 - Computer control (keyboard, mouse, screenshot)
+- Messaging (send WhatsApp messages to phone numbers or saved contacts)
 - System info (time, hardware stats)
 - Memory (save and recall facts, custom workflows)
+
 
 Always prefer tool use over attempting to answer with text alone when an action is needed.
 """

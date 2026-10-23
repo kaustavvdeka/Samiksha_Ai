@@ -18,6 +18,8 @@ import tools.files          # search_files, open_file, create_file, read_file
 
 # Memory & Workflow tools (Milestone 6 & 7)
 import tools.memory_tools
+import tools.messaging         # send_whatsapp_message
+
 
 from tools.registry import execute_tool, get_tool_schemas, get_tool_names, has_tool
 

@@ -67,11 +67,13 @@ _SAFE_TOOLS: set[str] = {
     "focus_application",
     "hide_application",
     "restart_application",
+    "send_whatsapp_message",
     "get_memory",
     "save_memory",
     "run_custom_workflow",
     "list_custom_workflows",
 }
+
 
 
 _BLOCKED_TOOLS: set[str] = {
